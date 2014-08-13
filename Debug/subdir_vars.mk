@@ -7,21 +7,27 @@ CMD_SRCS += \
 ../lnk_msp430f5529.cmd 
 
 C_SRCS += \
-../main.c 
+../main.c \
+../spi.c 
 
 OBJS += \
-./main.obj 
+./main.obj \
+./spi.obj 
 
 C_DEPS += \
-./main.pp 
+./main.pp \
+./spi.pp 
 
 C_DEPS__QUOTED += \
-"main.pp" 
+"main.pp" \
+"spi.pp" 
 
 OBJS__QUOTED += \
-"main.obj" 
+"main.obj" \
+"spi.obj" 
 
 C_SRCS__QUOTED += \
-"../main.c" 
+"../main.c" \
+"../spi.c" 
 
 
