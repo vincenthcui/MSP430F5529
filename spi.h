@@ -3,7 +3,7 @@
  *
  *  Created on: 2014Äê8ÔÂ13ÈÕ
  *      Author: Chrics
- *      For: spi connect in 1 to 1 module.
+ *      For: spi connection in LCD-1000 sensor module.
  */
 
 #ifndef SPI_H_

@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v4.3.1                      
 ******************************************************************************
->> Linked Wed Aug 13 17:43:22 2014
+>> Linked Wed Aug 13 21:42:08 2014
 
 OUTPUT FILE NAME:   <LDC1000-F5529-EXAMPLE.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 00004400
@@ -19,8 +19,8 @@ MEMORY CONFIGURATION
   INFOB                 00001900   00000080  00000000  00000080  RWIX
   INFOA                 00001980   00000080  00000000  00000080  RWIX
   USBRAM                00001c00   00000800  00000000  00000800  RWIX
-  RAM                   00002400   00002000  000000a9  00001f57  RWIX
-  FLASH                 00004400   0000bb80  000002fa  0000b886  RWIX
+  RAM                   00002400   00002000  000000c1  00001f3f  RWIX
+  FLASH                 00004400   0000bb80  00000568  0000b618  RWIX
   INT00                 0000ff80   00000002  00000000  00000002  RWIX
   INT01                 0000ff82   00000002  00000000  00000002  RWIX
   INT02                 0000ff84   00000002  00000000  00000002  RWIX
@@ -96,40 +96,60 @@ section   page    origin      length       input sections
 .init_array 
 *          0    00004400    00000000     UNINITIALIZED
 
-.bss       0    00002400    00000009     UNINITIALIZED
-                  00002400    00000002     (.common:rxbuf)
-                  00002402    00000002     (.common:txbuf)
-                  00002404    00000002     (.common:wordbuf)
-                  00002406    00000001     (.common:rxlen)
-                  00002407    00000001     (.common:txaddr)
-                  00002408    00000001     (.common:txlen)
+.bss       0    00002400    0000001b     UNINITIALIZED
+                  00002400    00000004     (.common:frequencyData)
+                  00002404    00000002     (.common:frequencyDataMAX)
+                  00002406    00000002     (.common:frequencyDataMIN)
+                  00002408    00000002     (.common:frequencyDataTEMP)
+                  0000240a    00000002     (.common:proximtyData)
+                  0000240c    00000002     (.common:proximtyDataMAX)
+                  0000240e    00000002     (.common:proximtyDataMIN)
+                  00002410    00000002     (.common:proximtyDataTEMP)
+                  00002412    00000002     (.common:rxbuf)
+                  00002414    00000002     (.common:txbuf)
+                  00002416    00000002     (.common:wordbuf)
+                  00002418    00000001     (.common:rxlen)
+                  00002419    00000001     (.common:txaddr)
+                  0000241a    00000001     (.common:txlen)
 
 .TI.noinit 
 *          0    00002400    00000000     UNINITIALIZED
+
+.data      0    0000241c    00000006     UNINITIALIZED
+                  0000241c    00000006     main.obj (.data)
+
+.TI.persistent 
+*          0    0000241c    00000000     UNINITIALIZED
 
 .stack     0    00004360    000000a0     UNINITIALIZED
                   00004360    00000002     rts430x_lc_sd_eabi.lib : boot.obj (.stack)
                   00004362    0000009e     --HOLE--
 
 .text:_isr 
-*          0    00004400    0000001a     
+*          0    00004400    00000032     
                   00004400    0000001a     rts430x_lc_sd_eabi.lib : boot.obj (.text:_isr:_c_int00_noexit)
+                  0000441a    00000018     main.obj (.text:_isr:Port_1)
 
-.text      0    0000441a    000002ce     
-                  0000441a    0000012a     main.obj (.text:main)
-                  00004544    00000070     rts430x_lc_sd_eabi.lib : autoinit.obj (.text:_auto_init)
-                  000045b4    00000058     spi.obj (.text:spi_readBytes)
-                  0000460c    0000004e     main.obj (.text:SetVCoreUp)
-                  0000465a    00000042     spi.obj (.text:spi_writeByte)
-                  0000469c    0000003e     rts430x_lc_sd_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
-                  000046da    00000006                            : isr_trap.obj (.text:__TI_ISR_TRAP)
-                  000046e0    00000004                            : pre_init.obj (.text:_system_pre_init)
-                  000046e4    00000004                            : exit.obj (.text:abort)
+.text      0    00004432    0000050a     
+                  00004432    00000204     main.obj (.text:main)
+                  00004636    000000d8     rts430x_lc_sd_eabi.lib : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
+                  0000470e    00000070                            : autoinit.obj (.text:_auto_init)
+                  0000477e    00000058     spi.obj (.text:spi_readBytes)
+                  000047d6    0000004e     main.obj (.text:SetVCoreUp)
+                  00004824    00000042     spi.obj (.text:spi_writeByte)
+                  00004866    00000040     rts430x_lc_sd_eabi.lib : cpy_util.obj (.text:__memcpy_far)
+                  000048a6    0000003e                            : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
+                  000048e4    0000003c                            : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  00004920    0000000e                            : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
+                  0000492e    00000006                            : isr_trap.obj (.text:__TI_ISR_TRAP)
+                  00004934    00000004                            : pre_init.obj (.text:_system_pre_init)
+                  00004938    00000004                            : exit.obj (.text:abort)
 
-.cinit     0    000046e8    00000012     
-                  000046e8    00000006     (.cinit..bss.load) [load image, compression = zero_init]
-                  000046ee    00000004     (__TI_handler_table)
-                  000046f2    00000008     (__TI_cinit_table)
+.cinit     0    0000493c    0000002c     
+                  0000493c    0000000c     (__TI_handler_table)
+                  00004948    0000000a     (.cinit..data.load) [load image, compression = rle]
+                  00004952    00000006     (.cinit..bss.load) [load image, compression = zero_init]
+                  00004958    00000010     (__TI_cinit_table)
 
 RTC        0    0000ffd2    00000002     
                   0000ffd2    00000002     rts430x_lc_sd_eabi.lib : int41.obj (.int41)
@@ -152,7 +172,7 @@ USCI_A1    0    0000ffdc    00000002
                   0000ffdc    00000002     rts430x_lc_sd_eabi.lib : int46.obj (.int46)
 
 PORT1      0    0000ffde    00000002     
-                  0000ffde    00000002     rts430x_lc_sd_eabi.lib : int47.obj (.int47)
+                  0000ffde    00000002     main.obj (.int47)
 
 TIMER1_A1 
 *          0    0000ffe0    00000002     
@@ -211,14 +231,17 @@ SYSNMI     0    0000fffc    00000002
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 000046f2 records: 1, size/record: 8, table size: 8
-	.bss: load addr=000046e8, load size=00000006 bytes, run addr=00002400, run size=00000009 bytes, compression=zero_init
+__TI_cinit_table @ 00004958 records: 2, size/record: 8, table size: 16
+	.data: load addr=00004948, load size=0000000a bytes, run addr=0000241c, run size=00000006 bytes, compression=rle
+	.bss: load addr=00004952, load size=00000006 bytes, run addr=00002400, run size=0000001b bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 000046ee records: 1, size/record: 4, table size: 4
+__TI_handler_table @ 0000493c records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_zero_init
+	index: 1, handler: __TI_decompress_rle24
+	index: 2, handler: __TI_decompress_none
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
@@ -307,7 +330,7 @@ address    name
 00000732   ADC12MEM9
 00000733   ADC12MEM9_H
 00000732   ADC12MEM9_L
-000046e4   C$$EXIT
+00004938   C$$EXIT
 000008c0   CBCTL0
 000008c1   CBCTL0_H
 000008c0   CBCTL0_L
@@ -566,6 +589,7 @@ address    name
 0000012e   PMMRIE
 0000012f   PMMRIE_H
 0000012e   PMMRIE_L
+0000441a   Port_1
 00000158   RCCTL0
 00000159   RCCTL0_H
 00000158   RCCTL0_L
@@ -678,7 +702,7 @@ address    name
 0000019a   SYSUNIV
 0000019b   SYSUNIV_H
 0000019a   SYSUNIV_L
-0000460c   SetVCoreUp
+000047d6   SetVCoreUp
 00000352   TA0CCR0
 00000354   TA0CCR1
 00000356   TA0CCR2
@@ -971,14 +995,16 @@ address    name
 0000015c   WDTCTL_L
 00004400   __STACK_END
 000000a0   __STACK_SIZE
-000046f2   __TI_CINIT_Base
-000046fa   __TI_CINIT_Limit
-000046ee   __TI_Handler_Table_Base
-000046f2   __TI_Handler_Table_Limit
+00004958   __TI_CINIT_Base
+00004968   __TI_CINIT_Limit
+0000493c   __TI_Handler_Table_Base
+00004948   __TI_Handler_Table_Limit
 UNDEFED    __TI_INITARRAY_Base
 UNDEFED    __TI_INITARRAY_Limit
-000046da   __TI_ISR_TRAP
+0000492e   __TI_ISR_TRAP
 00000001   __TI_args_main
+000048e4   __TI_decompress_none
+00004920   __TI_decompress_rle24
 00000001   __TI_exit
 0000ffd2   __TI_int41
 0000ffd4   __TI_int42
@@ -1002,20 +1028,32 @@ UNDEFED    __TI_INITARRAY_Limit
 0000fff8   __TI_int60
 0000fffa   __TI_int61
 0000fffc   __TI_int62
-0000469c   __TI_zero_init
+000048a6   __TI_zero_init
 ffffffff   __binit__
 ffffffff   __c_args__
-00004544   _auto_init
+00004866   __memcpy_far
+0000470e   _auto_init
 00004400   _c_int00
 00004400   _c_int00_noexit
 0000fffe   _reset_vector
 00004360   _stack
-000046e0   _system_pre_init
-000046e4   abort
+00004934   _system_pre_init
+00004938   abort
 ffffffff   binit
-0000441a   main
-000045b4   spi_readBytes
-0000465a   spi_writeByte
+0000241c   datas
+0000241e   drdyCounter
+00002400   frequencyData
+00002404   frequencyDataMAX
+00002406   frequencyDataMIN
+00002408   frequencyDataTEMP
+0000241d   led
+00004432   main
+0000240a   proximtyData
+0000240c   proximtyDataMAX
+0000240e   proximtyDataMIN
+00002410   proximtyDataTEMP
+0000477e   spi_readBytes
+00004824   spi_writeByte
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -1767,24 +1805,39 @@ address    name
 000023fd   USBIEPBBAY_7
 000023fe   USBIEPBCTY_7
 000023ff   USBIEPSIZXY_7
+00002400   frequencyData
+00002404   frequencyDataMAX
+00002406   frequencyDataMIN
+00002408   frequencyDataTEMP
+0000240a   proximtyData
+0000240c   proximtyDataMAX
+0000240e   proximtyDataMIN
+00002410   proximtyDataTEMP
+0000241c   datas
+0000241d   led
+0000241e   drdyCounter
 00004360   _stack
 00004400   __STACK_END
 00004400   _c_int00
 00004400   _c_int00_noexit
-0000441a   main
-00004544   _auto_init
-000045b4   spi_readBytes
-0000460c   SetVCoreUp
-0000465a   spi_writeByte
-0000469c   __TI_zero_init
-000046da   __TI_ISR_TRAP
-000046e0   _system_pre_init
-000046e4   C$$EXIT
-000046e4   abort
-000046ee   __TI_Handler_Table_Base
-000046f2   __TI_CINIT_Base
-000046f2   __TI_Handler_Table_Limit
-000046fa   __TI_CINIT_Limit
+0000441a   Port_1
+00004432   main
+0000470e   _auto_init
+0000477e   spi_readBytes
+000047d6   SetVCoreUp
+00004824   spi_writeByte
+00004866   __memcpy_far
+000048a6   __TI_zero_init
+000048e4   __TI_decompress_none
+00004920   __TI_decompress_rle24
+0000492e   __TI_ISR_TRAP
+00004934   _system_pre_init
+00004938   C$$EXIT
+00004938   abort
+0000493c   __TI_Handler_Table_Base
+00004948   __TI_Handler_Table_Limit
+00004958   __TI_CINIT_Base
+00004968   __TI_CINIT_Limit
 0000ffd2   __TI_int41
 0000ffd4   __TI_int42
 0000ffd6   __TI_int43
@@ -1814,4 +1867,4 @@ ffffffff   binit
 UNDEFED    __TI_INITARRAY_Base
 UNDEFED    __TI_INITARRAY_Limit
 
-[791 symbols]
+[806 symbols]
