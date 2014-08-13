@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+
+
+
+<meta content="HTML Tidy for Windows (vers 15 August 2007), see www.w3.org" name="generator">
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii"><!-- /* * Copyright 2007 by Texas Instruments Incorporated. * All rights reserved. Property of Texas Instruments Incorporated. * Restricted rights to use, duplicate or disclose this code are * granted through contract. * * */ --><title>MSP430 Peripheral Driver Library</title><!-- For now, we use the doxygen style sheet -->
+
+
+
+<link href="docs/html/doxygen.css" rel="stylesheet" type="text/css"></head>
+<body>
+<table width="100%">
+<tbody>
+<tr>
+<td bgcolor="black" width="1"><a href="http://www.ti.com"><img src="doc/tilogo.gif" alt="Texas Instruments" border="0"></a></td>
+<td bgcolor="red"><img src="doc/titagline.gif"></td>
+</tr>
+</tbody>
+</table>
+<h1>MSP430 DriverLib &nbsp;1.40.01.00</h1>
+<h2>Release Notes&nbsp;</h2>
+Document Revision: 072113.2348<br>
+<br>
+<h2><a name="Introduction" id="Introduction">Introduction</a></h2>
+<p>This is the MSP430 Peripheral Driver Library. &nbsp;
+&nbsp;&nbsp;This&nbsp;peripheral driver library's intent is to
+allow
+application development at an API level instead at the device register
+level. &nbsp; Allowing developers to concentrate on their
+applications
+instead of the nuances of the particular MSP430 device they are using.
+&nbsp;</p>
+This document is divided into the following sections:
+<ul>
+<li><a href="#Documentation">Documentation</a></li>
+<li><a href="#Whats_New">What's New</a></li>
+<li><a href="#Installation">Installation and Usage</a></li>
+<li><a href="#Host_Support">Host Support</a></li>
+<li><a href="#Dependencies">Dependencies</a></li>
+
+<li><a href="#Validation">Validation Information</a></li>
+
+<li><a href="#Peripheral_Support"><span style="text-decoration: underline;">Peripheral Support</span></a></li><li><span style="text-decoration: underline;"><a href="#Known_Issues2">Known Issues</a><br></span></li>
+<li><a href="#Versioning">Versioning</a></li>
+<li><a href="#Technical_Support">Technical Support
+and Product Updates</a></li>
+</ul>
+<h2><a name="Documentation" id="Documentation">Documentation<br></a></h2>
+<ul>
+<li style="margin-left: 40px;">MSP430ware Peripheral
+Driver Library API&nbsp;</li><li style="margin-left: 80px;"><a href="doc/driverlib/MSP430F5xx_6xx/html/index.html">MSP430F5xx_6xx</a></li><li style="margin-left: 80px;"><a href="doc/driverlib/MSP430FR57xx/html/index.html">MSP430FR57xx</a></li><li style="margin-left: 80px;"><a href="doc/driverlib/MSP430FR5xx_6xx/html/index.html">MSP430FR5xx_6xx</a></li><li style="margin-left: 40px;">MSP430ware
+Peripheral
+Driver Library User's Guides</li>
+<li style="margin-left: 80px;"><a href="doc/driverlib/MSP430F5xx_6xx/MSP430F5xx_6xx_DriverLib_Users_Guide-1_40_01_00.pdf">MSP430F5xx_6xx</a></li><li style="margin-left: 80px;"><a href="doc/driverlib/MSP430FR57xx/MSP430FR57xx_DriverLib_Users_Guide-1_40_01_00.pdf">MSP430FR57xx</a></li>
+<li style="margin-left: 80px;"><a href="doc/driverlib/MSP430FR5xx_6xx/MSP430FR5xx_6xx_DriverLib_Users_Guide-1_40_01_00.pdf">MSP430FR5xx_6xx</a></li><li style="margin-left: 40px;"><a href="doc/grlib/html/index.html">MSP430 Graphics Library API</a></li>
+</ul>
+<h2><a name="Whats_New" id="Whats_New">What's
+New</a></h2>
+<ul><li><span style="display: inline ! important; float: none; word-spacing: 0px; font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; font-size: medium; line-height: normal; font-size-adjust: none; font-stretch: normal; text-transform: none; color: rgb(0, 0, 0); text-indent: 0px; white-space: normal; letter-spacing: normal; text-align: left; orphans: 2; widows: 2;">In
+the previous MSP430ware driverlib releases, the function
+ADC12_B_memoryConfigure for the MSP430FR9xx devices did not enable the
+window comparator bit ADC12WINC and differential mode bit ADC12DIF even
+if the correct parameter is passed to the function. This has been fixed
+in this release.</span><span id="short_desc_nonedit_display">[Bug 3930]</span></li><li><span style="display: inline ! important; float: none; word-spacing: 0px; font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; font-size: medium; line-height: normal; font-size-adjust: none; font-stretch: normal; text-transform: none; color: rgb(0, 0, 0); text-indent: 0px; white-space: normal; letter-spacing: normal; text-align: left; orphans: 2; widows: 2;">There were minor comments/document update for driverlib APIs</span></li><li><span style="display: inline ! important; float: none; word-spacing: 0px; font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; font-size: medium; line-height: normal; font-size-adjust: none; font-stretch: normal; text-transform: none; color: rgb(0, 0, 0); text-indent: 0px; white-space: normal; letter-spacing: normal; text-align: left; orphans: 2; widows: 2;">In the previous </span><span style="display: inline ! important; float: none; word-spacing: 0px; font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; font-size: medium; line-height: normal; font-size-adjust: none; font-stretch: normal; text-transform: none; color: rgb(0, 0, 0); text-indent: 0px; white-space: normal; letter-spacing: normal; text-align: left; orphans: 2; widows: 2;">MSP430ware driverlib releases, </span><span id="short_desc_nonedit_display">GPIO_interruptEdgeSelect() </span><span id="short_desc_nonedit_display">[</span>MSP430F5xx_6xx family] <span id="short_desc_nonedit_display">function&nbsp;</span><span id="short_desc_nonedit_display">for Port2 sets P1IES not P2IES. This has been fixed in this release. [Bug 3357]</span></li><li>The header files have been updated to be in sync with CCS5.5 Beta</li><li>FRAM_configureWaitStateControl API in 5xx_6xx family now ignores the manualWaitState parameter
+since this register bit is now changed&nbsp; to a reserved bit. The API
+signature has not changed to maintain backward compatibility..</li><li>FRAM_configureWaitStateControl
+API in MSP430FR5xx_6xx family signature has changed to exclude
+the&nbsp;manualWaitState parameter since this&nbsp;register bit is now
+a reserved bit.</li><li>PMM_lockLPM5() API is used in MSP430FR5xx_6xx
+examples to disable the GPIO power-on default high-impedance mode to
+activate previously&nbsp;configured port settings.&nbsp;</li></ul>
+
+
+<ul>
+</ul>
+<p>The MSP430ware contains the following components. </p>
+<table border="1">
+<tbody>
+<tr><td>deprecated</td><td>Header files that are not part of the standard CCS or IAR distribution</td></tr><tr>
+<td>doc </td>
+<td>Device and MSP430 Peripheral Driver Library
+documentation</td>
+</tr>
+<tr>
+<td>driverlib </td>
+<td>MSP430 Peripheral
+Driver Library source code. &nbsp;A pre-built&nbsp;version of
+the library and the vendor's project files may
+be
+found in the compiler vendor's subdirectory (i.e. CCS will contain the
+CCS build of the Driver library)</td>
+</tr>
+<tr>
+<td>examples</td>
+<td>Device and DriverLib examples</td>
+</tr>
+
+
+
+<tr>
+<td>grlib </td>
+<td><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;;"> </span><a href="release_notes_grlib.html">MSP430 Graphics Library</a>
+</td>
+</tr>
+<tr>
+<td>inc </td>
+<td>MSP430 Driver Library include files</td>
+</tr>
+
+
+
+
+</tbody>
+</table>
+<br>
+<h2><a name="Installation" id="Installation">Installation
+and Usage</a></h2>
+<p class="MsoNormal" style="margin: 5pt 0in;">Generally DriverLib is
+installed as part of MSP430ware. &nbsp;If you wish to update DriverLib
+from the zip file, cd to &lt;MSP430ware_Installation_Directory&gt; and
+unzip driverlib_x_xx_xx_xx.zip. </p>
+
+<h2><a name="Host_Support" id="Host_Support">Host
+Support</a></h2>
+<p>This release supports installation and development on
+Microsoft Windows XP Workstations.</p>
+<h2><a name="Dependencies" id="Dependencies">Dependencies</a></h2>
+<p class="MsoNormal">MSP4305xx_6xx devices<br>
+CCS 5.1.1<br>
+IAR 5.20.1<br>
+<br>MSP430FR57xx devices<br>
+CCS 5.3.0<br>
+
+IAR 5.40<o:p></o:p></p>
+
+
+
+
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p>MSP430FR5xx_6xx devices<br>
+CCS 5.4.0<br>
+IAR 5.51<o:p></o:p></p>
+
+<h2><a name="Validation" id="Validation">Validation
+Information</a></h2>
+<p>This release is a major release version and has been tested.<br>
+</p>
+<h2><a name="Examples" id="Examples">Examples</a></h2><p>The
+examples may be built with either IAR or CCS. &nbsp;To build the
+examples navigate to
+examples/driverlib/Family_Name/&lt;peripheral&gt;
+and double
+click the .eww project files for IAR or .project file for CCS. <br>
+</p>
+<p>Current supported Family_Name are</p>
+<p>MSP430F5xx_6xx</p>
+<p>MSP430FR57xx</p>
+MSP430FR5xx_6xx
+<h2><a name="Peripheral_Support" id="Known_Issues">Peripheral Support</a></h2>
+
+<ul><li>This is the 1.40.01.00 release of MSP430 Peripheral Driver
+Library. &nbsp;The following peripherals are supported in this
+release:</li></ul>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; MSP430F5xx_6xx Devices<br>
+
+
+  
+<ul style="margin-left: 40px;"><li>ADC10_A</li><li>ADC12_A</li><li>AES</li><li>BAK_BATT (Battery Backup System)</li><li>COMP_B</li><li>CRC</li><li>DAC12_A</li><li>DMA</li><li>EUSCI_B_I2C</li><li>EUSCI_A_SPI</li><li>EUSCI_B_SPI</li><li>EUSCI_A_UART</li><li>FLASH</li><li>SFR</li><li>SYS</li><li>GPIO</li><li>LDOPWR</li><li>MPY32</li><li>PMAP</li><li>PMM</li><li>RAM Controller</li><li>REF</li><li>REF_A</li><li>RTC_A</li><li>RTC_B</li><li>RTC_C</li><li>SD24_B</li><li>SFR</li><li>SYS</li><li>TEC</li><li>Timer_A</li><li>Timer_B</li><li>Timer_D</li><li>TLV</li><li>UCS</li><li>USCI_B_I2C</li><li>USCI_A_SPI</li><li>USCI_B_SPI</li><li>USCI_A_UART</li><li>WDT_A</li></ul>
+
+    
+    
+    
+    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; MSP430FR57xx Devices
+<br>
+<ul style="margin-left: 40px;"><li>ADC12_B</li><li>AES256</li><li>COMP_E</li><li>CRC</li><li>CS</li><li>DMA</li><li>EUSCI_B_I2C</li><li>EUSCI_A_SPI</li><li>EUSCI_B_SPI</li><li>EUSCI_A_UART</li><li>FRAM</li><li>GPIO</li><li>MPU</li><li>MPY32</li><li>PMM</li><li>REF</li><li>RTC_B</li><li>SFR</li><li>SYS</li><li>Timer_A</li><li>Timer_B</li><li>TLV</li><li>WDT_A</li></ul>
+
+    
+    
+&nbsp;&nbsp;&nbsp; MSP430FR5xx_6xx Devices
+<br>
+<ul style="margin-left: 40px;"><li>ADC12_B</li><li>AES256</li><li>Comp_E</li><li>CRC</li><li>CS</li><li>DMA</li><li>EUSCI_B_I2C</li><li>EUSCI_A_SPI</li><li>EUSCI_B_SPI</li><li>EUSCI_A_UART</li><li>FRAM</li><li>GPIO</li><li>MPU</li><li>MPY32</li><li>PMM</li><li>REF_A</li><li>RTC_B</li><li>SFR</li><li>SYS</li><li>Timer_A</li><li>Timer_B</li><li>TLV</li><li>WDT_A</li></ul><br><h2><a name="Known_Issues2"></a>Known Issues</h2>
+The device specific header files for the MSP430FR5xx_6xx Devices are
+currently included with this build. the inc/hw_memmap.h correctly maps
+to the device specific files. When the updated files are officially
+available in the IDE we will remove this internal header files and
+references seamlessly. Please avoid references to msp430.h and include
+hw_memmap.h
+
+
+<ul></ul>
+<ul>
+  <li>Asserts in CCS&nbsp;work only when the project is optimized for size</li>
+  <li><span style="display: inline ! important; float: none; word-spacing: 0px; font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; font-size: medium; line-height: normal; font-size-adjust: none; font-stretch: normal; text-transform: none; color: rgb(0, 0, 0); text-indent: 0px; white-space: normal; letter-spacing: normal; text-align: left; orphans: 2; widows: 2;">Comp_E 
+examples in examples\driverlib\5xx_6xx\comp_e will fail to build due to a bug in the existing device header file for 
+versions of CCS less than CCS 5.3. To workaround this, please upgrade CCS or 
+replace the msp430fr5969.h from the CCS5.3 release in your CCS install.</span></li>
+  <li><span style="display: inline ! important; float: none; word-spacing: 0px; font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; font-size: medium; line-height: normal; font-size-adjust: none; font-stretch: normal; text-transform: none; color: rgb(0, 0, 0); text-indent: 0px; white-space: normal; letter-spacing: normal; text-align: left; orphans: 2; widows: 2;">Comp_E
+examples in examples\driverlib\5xx_6xx\comp_e will fail to build due to
+a bug in the existing device header file for versions of IAR5.5. To
+workaround this, please replace the </span><span style="display: inline ! important; float: none; word-spacing: 0px; font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; font-size: medium; line-height: normal; font-size-adjust: none; font-stretch: normal; text-transform: none; color: rgb(0, 0, 0); text-indent: 0px; white-space: normal; letter-spacing: normal; text-align: left; orphans: 2; widows: 2;">msp430fr5969</span><span style="display: inline ! important; float: none; word-spacing: 0px; font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; font-size: medium; line-height: normal; font-size-adjust: none; font-stretch: normal; text-transform: none; color: rgb(0, 0, 0); text-indent: 0px; white-space: normal; letter-spacing: normal; text-align: left; orphans: 2; widows: 2;">.h from
+deprecated\msp430fr5xx_6xx_header_files\IAR from the in your IAR5.5
+install.</span></li></ul><hr><h2><a name="Versioning" id="Versioning">Versioning</a></h2>
+<p>This is build 1.40.01.00 of&nbsp; MSP430ware.</p>
+<h2><small><small><a name="Technical_Support" id="Technical_Support">Technical
+Support and Product Updates</a></small></small></h2>
+<h2><small><small>Support</small></small></h2>
+<ul>
+<li><small><small>For questions and support, please
+visit <a href="http://support.ti.com/">support.ti.com</a>.</small></small></li>
+<li><small><small>or e-mail us directly at&nbsp;<font face="Times New Roman" size="3"><span style="font-size: 12pt;"><a title="mailto:msp430ware@list.ti.com" href="mailto:msp430ware@list.ti.com">msp430ware@list.ti.com.</a><o:p></o:p></span></font></small></small></li>
+</ul>
+<h2><small><small>Additional Resources</small></small></h2>
+<small><small>For more information, visit <a href="http://www.ti.com">www.ti.com</a>.
+</small></small>
+</body></html>
